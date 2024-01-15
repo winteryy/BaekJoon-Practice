@@ -72,8 +72,6 @@ int main(){
                 continue;
             }
         }
-
-
     
         if(node.y==n-1 && node.x==m-1){
             minDist = min(minDist, node.dist);
