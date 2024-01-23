@@ -5,7 +5,6 @@
 using namespace std;
 
 vector<int> nums;
-vector<int> ans;
 map<int, int> m;
 long long cnt = 0;
 int s;
