@@ -9,31 +9,32 @@ int n;
 vector<vector<int> > costMatrix;
 vector<vector<int> > dp;
 
-int DFS(int cur, int visit) {
-    if(visit == (1<<n)-1) {
-        if(costMatrix[cur][0]==0) {
+int TSP(int curV, int visitMask) {
+
+    if(visitMask == (1<<n)-1) { //모든 정점 방문
+        if(costMatrix[curV][0]==0) {
             return INF;
         }
-        return costMatrix[cur][0];
+        return costMatrix[curV][0];
     }
 
-    if(dp[cur][visit] != -1) {
-        return dp[cur][visit];
+    if(dp[curV][visitMask] != -1) { //이미 방문함
+        return dp[curV][visitMask];
     }
 
-    dp[cur][visit] = INF;
+    dp[curV][visitMask] = INF;
 
     for(int i=0; i<n; i++) {
-        if(costMatrix[cur][i]==0) {
+        if(costMatrix[curV][i]==0) { //간선 연결 체크
             continue;
         }
-        if((visit & (1<<i)) == (1<<i)) {
+        if((visitMask & (1<<i)) == (1<<i)) { //다음 정점이 방문한 곳
             continue;
         }
-        dp[cur][visit] = min(dp[cur][visit], costMatrix[cur][i]+DFS(i, visit | 1<<i));
+        dp[curV][visitMask] = min(dp[curV][visitMask], costMatrix[curV][i]+TSP(i, visitMask | 1<<i)); 
     }
 
-    return dp[cur][visit];
+    return dp[curV][visitMask];
 }
 
 int main() {
@@ -49,6 +50,6 @@ int main() {
         }
     }
 
-    cout << DFS(0, 1);
+    cout << TSP(0, 1);
 
 }
