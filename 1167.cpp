@@ -5,58 +5,59 @@
 
 using namespace std;
 
-class DistInfo {
-    public:
-    
-    int vertexNum, dist, dfsDist;
+vector<vector<pair<int, int> > > adjacentVector;
+int v; 
 
-    DistInfo(int vNum, int d) {
-        vertexNum = vNum;
-        dist = d;
-        dfsDist = 0;
+pair<int, int> DFS(int start) {
+
+    pair<int, int> farLeaf = {0,0};
+
+    stack<pair<int, int> > st;
+    vector<bool> isVisited(v+1, false);
+
+    st.push({start, 0});
+
+    while(!st.empty()) {
+        pair<int, int> topP = st.top();
+        st.pop();
+        isVisited[topP.first] = true;
+
+        if(topP.second > farLeaf.second) {
+            farLeaf = topP;
+        }
+
+        for(auto node: adjacentVector[topP.first]) {
+            if(!isVisited[node.first]) {
+                st.push({node.first, topP.second+node.second});
+            }
+        }
     }
-};
 
-class Node {
-    public:
-    
-    vector<DistInfo> dists;
-};
+    return farLeaf;
+}
 
 int main() {
-    int v; 
+    cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+
     cin >> v;
 
-    vector<Node> nodes(v+1, Node());
+    adjacentVector = vector<vector<pair<int, int> > >(v+1);
 
-    for(int i=1; i<=v; i++) {
-        int vertexNum;
-        cin >> vertexNum >> vertexNum;
-        while(vertexNum!=-1) {
-            int dist;
+    for(int i=0; i<v; i++) {
+        int startVertex;
+        int targetVertex, dist;
+        cin >> startVertex >> targetVertex;
+
+        while(targetVertex!=-1) {
             cin >> dist;
-
-            nodes[i].dists.push_back(DistInfo(vertexNum, dist));
-
-            cin >> vertexNum;
+            adjacentVector[startVertex].push_back({targetVertex, dist});
+            cin >> targetVertex;
         }
     }
 
-    for(int i=1; i<=v; i++) {
+    int farLeaf = DFS(1).first;
 
-        for(int j=0; j<nodes[i].dists.size(); j++) {
-            vector<bool> visited(v+1, false);
-            visited[i] = true;
-            stack<int> s;
-            s.push(nodes[i].dists[j].vertexNum);
+    cout << DFS(farLeaf).second;
 
-            int distSum = nodes[i].dists[j].dist;
-
-            while(!s.empty()) {
-                
-            }
-
-        }
-
-    }
 }
