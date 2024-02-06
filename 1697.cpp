@@ -21,6 +21,8 @@ int main() {
         q.pop();
         if(isVisited[cur.first]) continue;
 
+        isVisited[cur.first] = true;
+
         if(cur.first==k) {
             cout << cur.second;
             break;
