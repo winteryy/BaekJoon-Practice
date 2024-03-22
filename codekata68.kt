@@ -1,7 +1,7 @@
 class Solution {
     fun solution(ingredient: IntArray): Int {
         var answer: Int = 0
-        
+
         var current = mutableListOf<Int>()
 
         for(num in ingredient) {
@@ -11,7 +11,7 @@ class Solution {
                 current[current.size-3]==2 && current[current.size-4]==1) {
                 answer++
                 for(i in 1..4) {
-                    current.removeAt(current.lastIndex)
+                    current.removeLast()
                 }
             }
         }
