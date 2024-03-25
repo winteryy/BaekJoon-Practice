@@ -17,7 +17,7 @@ int main() {
         cin >> n >> k;
 
         vector<vector<int> > adjList(n+1, vector<int>());
-        vector<pair<int, int> > inDegree(n+1, {0, 0});
+        vector<pair<int, int> > inDegree(n+1, {0, 0}); // { inDegreeNum, timeToNeed }
         vector<int> timeTake(n+1);
         vector<bool> isVisited(n+1, false);
 
