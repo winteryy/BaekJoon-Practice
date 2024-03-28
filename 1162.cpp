@@ -2,14 +2,14 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
-#define INF 9223372036854775800
+#define INF 999987654321
 
 using namespace std;
 
 typedef long long int ll;
 
 struct cmp {
-    bool operator()(pair<pair<ll, int>, int>& l, pair<pair<ll, int>, int>& r) {
+    bool operator()(pair<pair<int, ll>, int>& l, pair<pair<int, ll>, int>& r) {
         if(l.first.second==r.first.second) {
             return l.second > r.second;
         }else {
@@ -41,12 +41,13 @@ void dijkstra() {
         pq.pop();
         
         bool flag = false;
-        for(int i=0; i<=curCovered; i++) {
-            if(costs[i][curNode]<curCost) {
+        for(int i=0; i<curCovered; i++) {
+            if(costs[i][curNode]<=curCost) {
                 flag = true;
                 break;
             }
         }
+        if(costs[curCovered][curNode]<curCost) flag = true;
 
         if(flag) continue;
 
