@@ -60,13 +60,11 @@ int main() {
 
         adjList[start].push_back({target, cost});
     }
-    adjList.shrink_to_fit();
 
     cin >> start >> target;
     
     costs.assign(n+1, {INF, 0});
     costs[start] = {0, start};
-    costs.shrink_to_fit();
 
     dijkstra(start, target);
 
