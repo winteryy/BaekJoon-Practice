@@ -42,7 +42,7 @@ public:
     }
 
     Dice rollRight() {
-        return Dice(right, left, opposite, down, now, opposite);
+        return Dice(right, left, up, down, now, opposite);
     }
 };
 
