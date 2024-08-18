@@ -3,23 +3,16 @@
 
 using namespace std;
 
-int palindromeMatrix[2500][2500] = {0, };
+bool palindromeMatrix[2500][2500] = {false, };
 string s;
 
-int isPalindrome(int start, int end) {
-    if(palindromeMatrix[start][end]!=0) {
-        return palindromeMatrix[start][end];
-    }
-
+bool isPalindrome(int start, int end) {
     if(s[start]==s[end]) {
-        if(end-start<2) return 1;
+        if(end-start<2) return true;
 
-        if(palindromeMatrix[start+1][end-1]==0) {
-            palindromeMatrix[start+1][end-1] = isPalindrome(start+1, end-1);
-        }
         return palindromeMatrix[start+1][end-1];
     } else {
-        return -1;
+        return false;
     }
 }
 
@@ -28,8 +21,8 @@ int main() {
     int len = s.length();
 
     for(int i=0; i<len; i++) {
-        for(int j=i; j<len; j++) {
-            palindromeMatrix[i][j] = isPalindrome(i, j);
+        for(int j=0; j+i<len; j++) {
+            palindromeMatrix[j][j+i] = isPalindrome(j, j+i);
         }
     }
 
