@@ -36,61 +36,28 @@ void solve(vector<vector<char> > board, point blue, point red, int depth) {
         vector<vector<char> > newBoard(board);
         
         ball_result redResult, blueResult;
-        switch(i) {
-            case 0: {
-                if(blue.second>red.second) {
-                    blueResult = moveBall(newBoard, blue, i, false);
-                    redResult = moveBall(newBoard, red, i, true);
-                } else {
-                    redResult = moveBall(newBoard, red, i, true);
-                    blueResult = moveBall(newBoard, blue, i, false);
-                }
-                break;
-            }
-
-            case 1: {
-                if(blue.first>red.first) {
-                    blueResult = moveBall(newBoard, blue, i, false);
-                    redResult = moveBall(newBoard, red, i, true);
-                } else {
-                    redResult = moveBall(newBoard, red, i, true);
-                    blueResult = moveBall(newBoard, blue, i, false);
-                }
-                break;
-            }
-
-            case 2: {
-                if(blue.second<red.second) {
-                    blueResult = moveBall(newBoard, blue, i, false);
-                    redResult = moveBall(newBoard, red, i, true);
-                } else {
-                    redResult = moveBall(newBoard, red, i, true);
-                    blueResult = moveBall(newBoard, blue, i, false);
-                }
-                break;
-            }
-
-            case 3: {
-                if(blue.first<red.first) {
-                    blueResult = moveBall(newBoard, blue, i, false);
-                    redResult = moveBall(newBoard, red, i, true);
-                } else {
-                    redResult = moveBall(newBoard, red, i, true);
-                    blueResult = moveBall(newBoard, blue, i, false);
-                }
-                break;
-            }
+        if(
+            (i==0 && blue.second>red.second) ||
+            (i==1 && blue.first>red.first) ||
+            (i==2 && blue.second<red.second) ||
+            (i==3 && blue.first<red.first)
+        ) {
+            blueResult = moveBall(newBoard, blue, i, false);
+            redResult = moveBall(newBoard, red, i, true);
+        } else {
+            redResult = moveBall(newBoard, red, i, true);
+            blueResult = moveBall(newBoard, blue, i, false);            
         }
 
         if(blueResult.first) continue;;
         if(redResult.first) {
             minDepth = min(minDepth, depth);
-            continue;
+            return;
         }
         if(blueResult.second == blue && redResult.second == red) continue;
         if(depth < 10) {
             solve(newBoard, blueResult.second, redResult.second, depth+1);
-        }
+        } 
     }
 }
 
