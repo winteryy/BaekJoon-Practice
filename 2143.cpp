@@ -25,15 +25,7 @@ int main() {
         cin >> b[i];
     }
 
-    unordered_map<int, int> aMap, bMap;
-
-    for(int i=0; i<n; i++) {
-        int sum = 0;
-        for(int j=i; j<n; j++) {
-            sum+=a[j];
-            aMap[sum]++;
-        }
-    }
+    unordered_map<int, int> bMap;
 
     for(int i=0; i<m; i++) {
         int sum = 0;
@@ -45,10 +37,15 @@ int main() {
 
     long long result = 0;
 
-    for(auto e: aMap) {
-        auto bElement = bMap.find(t-e.first);
-        if(bElement!=bMap.end()) {
-            result += (long long)e.second*(*bElement).second;
+    for(int i=0; i<n; i++) {
+        int sum = 0;
+        for(int j=i; j<n; j++) {
+            sum+=a[j];
+
+            auto bElement = bMap.find(t-sum);
+            if(bElement!=bMap.end()) {
+                result += (*bElement).second;
+            }
         }
     }
 
