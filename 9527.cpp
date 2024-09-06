@@ -5,7 +5,7 @@ using namespace std;
 
 typedef long long ll;
 
-vector<ll> oneList; //ind : 2^ind 일 때 참조해야 하는 인덱스
+vector<ll> oneList;
 
 void fillOneList(ll num) {
     ll ex = 1;
