@@ -7,7 +7,7 @@ int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
 
-    int g, p, num;
+    int g, p, planeNum;
     cin >> g >> p;
 
     set<int> gateSet = set<int>();
@@ -20,10 +20,10 @@ int main() {
     bool flag = true;
 
     for(int i=0; i<p; i++) {
-        cin >> num;
+        cin >> planeNum;
         
         if(flag) {
-            auto iter = gateSet.upper_bound(num);
+            auto iter = gateSet.upper_bound(planeNum);
             
             if(gateSet.empty()) {
                 flag = false;
