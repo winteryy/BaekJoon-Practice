@@ -22,7 +22,7 @@ int main() {
     startWithBlue[0][1] = INF_COST;
 
     int redCost, greenCost, blueCost;
-    for(int i=1; i<n; i++) { //마지막 원소는 따로 계산
+    for(int i=1; i<n; i++) {
         cin >> redCost >> greenCost >> blueCost;
 
         startWithRed[i][0] = min(startWithRed[i-1][1], startWithRed[i-1][2]) + redCost;
