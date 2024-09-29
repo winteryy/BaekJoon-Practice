@@ -33,5 +33,4 @@ int main() {
         cout << max(dp[n][2], max(dp[n][0], dp[n][1])) << "\n";
     }
 
-
 }
