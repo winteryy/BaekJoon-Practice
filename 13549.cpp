@@ -12,6 +12,7 @@ int main() {
 
     vector<int> isVisited(100001, INF);
     priority_queue<pair<int, int> > pq;  //{-cost, position}
+
     pq.push({0, n});
 
     while(!pq.empty()) {
