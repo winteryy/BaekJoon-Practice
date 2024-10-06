@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -12,18 +13,26 @@ int main() {
     
     int width = 2*n-1;
 
-    for(int i=1; i<=n; i++) {
-        int blank = (width-(2*i-1))/2;
-        for(int j=0; j<blank; j++) {
-            cout << " ";
-        }
+    vector<string> triangle(n, "");
+    triangle[0] = "*";
+    triangle[1] = "* *";
+    triangle[2] = "*****";
 
-        if(i%3==1) {
-            cout << "*";
-        } else {
-            cout << "*****";
-            
-
+    int refInd = 3;
+    for(int i=3; i<n; i++) {
+        if(i==refInd*2) refInd *= 2;
+        triangle[i] += triangle[i%refInd];
+        for(int j=0; j<2*(i+1)-1-(2*triangle[i%refInd].length()); j++) {
+            triangle[i] += " ";
         }
+        triangle[i] += triangle[i%refInd];
+    }
+
+    for(int i=0; i<n; i++) {
+        string blank = "";
+        for(int j=0; j<(width-triangle[i].length())/2; j++) {
+            blank += " ";
+        }
+        cout << blank << triangle[i] << blank << "\n";
     }
 }
