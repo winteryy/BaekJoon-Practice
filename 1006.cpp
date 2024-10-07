@@ -11,7 +11,7 @@ int main() {
 
     int t;
     cin >> t;
-    for(int tc=0; tc<t; tc++) {
+    while(t--) {
         int n, w;
         cin >> n >> w;
         
@@ -48,7 +48,7 @@ int main() {
             dp[1][0] = initCase.first ? INF : 1;
             dp[2][0] = (!initCase.first && !initCase.second && (enemyList[0][0] + enemyList[1][0] <= w)) ? 1 : 2;
 
-            for(int i=1; i<n-1; i++) {
+            for(int i=1; i<n; i++) {
                 bool innerFlag = enemyList[0][i-1] + enemyList[0][i] <= w;
                 bool outerFlag = enemyList[1][i-1] + enemyList[1][i] <= w;
                 bool verticalFlag = enemyList[0][i] + enemyList[1][i] <= w;
@@ -80,34 +80,14 @@ int main() {
                 }
             } 
 
-
-            bool lastInnerFlag = enemyList[0][n-1] + enemyList[0][n-2] <= w;
-            bool lastOuterFlag = enemyList[1][n-1] + enemyList[1][n-2] <= w;
-            bool lastVerticalFlag = enemyList[0][n-1] + enemyList[1][n-1] <= w;
             if(initCase.first && initCase.second) {
                 minNum = min(minNum, dp[2][n-2]);
             } else if(initCase.first) {
-                if(lastOuterFlag) {
-                    minNum = min(minNum, min(dp[0][n-2]+1, dp[2][n-2]+1));
-                } else {
-                    minNum = min(minNum, dp[2][n-2]+1);
-                }
+                minNum = min(minNum, dp[1][n-1]);
             } else if(initCase.second) {
-                if(lastInnerFlag) {
-                    minNum = min(minNum, min(dp[1][n-2]+1, dp[2][n-2]+1));
-                } else {
-                    minNum = min(minNum, dp[2][n-2]+1);
-                }  
+                minNum = min(minNum, dp[0][n-1]);  
             } else {
-                if(lastVerticalFlag) {
-                    minNum = min(minNum, dp[2][n-2]+1);
-                } else {
-                    minNum = min(minNum, dp[2][n-2]+2);
-                }
-                
-                if(lastInnerFlag) minNum = min(minNum, dp[1][n-2] + 2);
-                if(lastOuterFlag) minNum = min(minNum, dp[0][n-2] + 2);
-                if(lastInnerFlag && lastOuterFlag && n>3) minNum = min(minNum, dp[2][n-3]+2);
+                minNum = min(minNum, dp[2][n-1]);
             }
         }
 
