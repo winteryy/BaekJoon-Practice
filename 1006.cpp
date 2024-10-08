@@ -68,7 +68,7 @@ int main() {
                 if(verticalFlag) {
                     dp[2][i] = min(dp[2][i-1]+1, min(dp[0][i]+1, dp[1][i]+1));
                 } else {
-                    dp[2][i] = min(dp[2][i-1]+2, min(dp[0][i]+1, dp[1][i]+1));
+                    dp[2][i] = min(dp[0][i]+1, dp[1][i]+1);
                 }
                 if(innerFlag && outerFlag) {
                     if(i>1) {
