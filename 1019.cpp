@@ -31,7 +31,6 @@ int main() {
             result[0] -= subs;
         }
 
-
         //prev  [0~자리에 위치한 수 -1]  0~아래 최대
         for(int j=0; j<numVector[i]; j++) {
             result[j] += subs;
