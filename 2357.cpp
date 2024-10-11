@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<pair<int, int> > minMaxTree(401000, {INF, 0}); // {min, max}
+vector<pair<int, int> > minMaxTree(270000, {INF, 0}); // {min, max}
 vector<int> numArr;
 
 pair<int, int> makeTree(int l, int r, int ind) {
