@@ -33,6 +33,7 @@ int main() {
                     remainTomato++;
                 }
                 if(tomatoCube[i][j][k]==1) {
+                    // BFS 초기값 처리용
                     tomatoCube[i][j][k] = -1;
                     q.push({{i, j, k}, 0});
                 }
