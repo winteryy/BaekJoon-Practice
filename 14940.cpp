@@ -52,8 +52,9 @@ int main() {
         for(int j=0; j<m; j++) {
             if(result[i][j]==0 && matrix[i][j]==1) {
                 cout << "-1" << " ";
+            } else {
+                cout << result[i][j] << " ";
             }
-            cout << result[i][j] << " ";
         }
         cout << "\n";
     }
