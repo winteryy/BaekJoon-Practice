@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
 
 using namespace std;
 
@@ -9,8 +8,6 @@ bool dp[4][50001];
 int main() {
     int n;
     cin >> n;  
-
-    memset(dp, false, sizeof(dp));
 
     vector<int> squares;
     for(int i=1; i*i<=n; i++) {
