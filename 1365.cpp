@@ -15,16 +15,16 @@ int main() {
         cin >> arr[i];
     }
 
-    vector<int> lcs;
-    lcs.push_back(arr[0]);
+    vector<int> lis;
+    lis.push_back(arr[0]);
 
     for(int i=1; i<n; i++) {
-        if(arr[i]>lcs[lcs.size()-1]) {
-            lcs.push_back(arr[i]);
+        if(arr[i]>lis[lis.size()-1]) {
+            lis.push_back(arr[i]);
         } else {
-            *lower_bound(lcs.begin(), lcs.end(), arr[i]) = arr[i];
+            *lower_bound(lis.begin(), lis.end(), arr[i]) = arr[i];
         }
     }
 
-    cout << n-lcs.size();
+    cout << n-lis.size();
 }
