@@ -44,4 +44,5 @@ int solution(vector<int> food_times, long long k) {
     sort(remainTime.begin(), remainTime.end());
 
     return remainTime[(k-timeSum) % foodNum];
+    
 }
