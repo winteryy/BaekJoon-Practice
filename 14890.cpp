@@ -37,7 +37,7 @@ int main() {
                 } else {
                     flatNum = 1;
                 }
-            } else if(prevLevel > mapMatrix[i][j]) {
+            } else if(prevLevel > mapMatrix[i][j]) { //downside
                 if(needDownside>0) {
                     validFlag = false;
                     break;
@@ -78,7 +78,7 @@ int main() {
                 } else {
                     flatNum = 1;
                 }
-            } else if(prevLevel > mapMatrix[j][i]) {
+            } else if(prevLevel > mapMatrix[j][i]) { //downside
                 if(needDownside>0 && flatNum<needDownside) {
                     validFlag = false;
                     break;
