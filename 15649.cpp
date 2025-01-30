@@ -15,7 +15,7 @@ void dfs(int depth) {
         cout << "\n";
     }
 
-    for(int i=1; i<=n; i++) {
+    for(int i=1; i<=n; i++) {   
         if(isVisited[i]==false) {
             isVisited[i] = true;
             curArr[depth] = i;
