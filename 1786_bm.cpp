@@ -4,7 +4,15 @@
 
 using namespace std;
 
-int exist[53]; // 0~25: upper, 26~51: lower, 52: whitespace
+int getCharToNum(char& c) {
+    if(isupper(c)) {
+        return c - 'A';
+    } else if(c==' ') {
+        return 52;
+    } else {
+        return 26 + c - 'a';
+    }
+}
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -15,35 +23,18 @@ int main() {
     getline(cin, n);
     getline(cin, m);
 
-    fill(begin(exist), end(exist), -1);
-
-    vector<int> skip(m.length()+1);
+    vector<int> skip(53, 1); // 0~25: upper, 26~51: lower, 52: whitespace
 
     //pre-processing(Bad Character)
     int tableInd;
-    int mLast = m.length()-1;
     for(int i=0; i<m.length(); i++) {
-        if(isupper(m[i])) {
-            tableInd = m[i] - 'A';
-        } else if(m[i]==' ') {
-            tableInd = 52;
-        } else {
-            tableInd = 26 + m[i] - 'a';
-        }
-
-        if(exist[tableInd]==-1) {
-            skip[i] = max(1, mLast-i);
-        } else {
-            skip[i] = i-exist[tableInd];
-        }
-        exist[tableInd] = i;
+        skip[getCharToNum(m[i])] = m.length()-i-1;
     }
-
-    skip[m.length()] = 1;
 
     //search
     vector<int> matchedInd;
     
+    int mLast = m.length()-1;
     int cursor = mLast;
     while(cursor<n.length()) {
         bool flag = true;
@@ -52,7 +43,7 @@ int main() {
             curInd = cursor-i;
             if(n[curInd] != m[mLast-i]) {
                 flag = false;
-                cursor += skip[mLast-i+1];
+                cursor += max(1, skip[getCharToNum(n[curInd])]);
                 break;
             }
         }
