@@ -4,8 +4,6 @@
 
 using namespace std;
 
-int exist[53]; // 0~25: upper, 26~51: lower, 52: whitespace
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
