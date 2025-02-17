@@ -6,10 +6,6 @@
 
 using namespace std;
 
-struct Edge {
-    int orig, dest, cost;
-};
-
 int n, m;
 vector<vector<pair<int, int> > > adjList;
 vector<vector<pair<int, pair<int, int> > > > revAdjList;
